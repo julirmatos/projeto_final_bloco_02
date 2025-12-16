@@ -72,17 +72,22 @@ export class UsuarioService implements OnModuleInit {
   }
 
   async atualizar(id: number, usuario: Usuario) {
-    const usuarioExistente = await this.usuarioRepository.preload({
-      id,
-      ...usuario,
-    });
+  const usuarioExistente = await this.usuarioRepository.preload({
+    id,
+    nome: usuario.nome,
+    email: usuario.email,
+    endereco: usuario.endereco,
+    telefone: usuario.telefone,
+    senha: usuario.senha,
+  });
 
-    if (!usuarioExistente) {
-      throw new NotFoundException('Usuário não encontrado');
-    }
-
-    return this.usuarioRepository.save(usuarioExistente);
+  if (!usuarioExistente) {
+    throw new NotFoundException('Usuário não encontrado');
   }
+
+  return this.usuarioRepository.save(usuarioExistente);
+}
+
 
   async deletar(id: number) {
     const usuario = await this.buscarPorId(id);

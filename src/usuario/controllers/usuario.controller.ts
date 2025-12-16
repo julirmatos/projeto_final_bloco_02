@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { UsuarioService } from '../services/usuario.service';
 import { Usuario } from '../entities/usuario.entity';
@@ -29,17 +30,20 @@ export class UsuarioController {
   }
 
   @Get(':id')
-  buscarPorId(@Param('id') id: string) {
-    return this.usuarioService.buscarPorId(+id);
+  buscarPorId(@Param('id', ParseIntPipe) id: number) {
+    return this.usuarioService.buscarPorId(id);
   }
 
   @Patch(':id')
-  atualizar(@Param('id') id: string, @Body() usuario: Usuario) {
-    return this.usuarioService.atualizar(+id, usuario);
+  atualizar(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() usuario: Usuario,
+  ) {
+    return this.usuarioService.atualizar(id, usuario);
   }
 
   @Delete(':id')
-  deletar(@Param('id') id: string) {
-    return this.usuarioService.deletar(+id);
+  deletar(@Param('id', ParseIntPipe) id: number) {
+    return this.usuarioService.deletar(id);
   }
 }
