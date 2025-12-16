@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoriaModule } from './categoria/categoria.module';
 import { ProdutoModule } from './produto/produto.module';
+import { Usuario } from './usuario/entities/usuario.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { ProdutoModule } from './produto/produto.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    CategoriaModule,ProdutoModule
+    CategoriaModule,ProdutoModule,UsuarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
