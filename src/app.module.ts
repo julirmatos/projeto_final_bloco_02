@@ -19,7 +19,7 @@ import { AppService } from './app.service';
       port: 3310,
       username: 'root',
       password: 'root',
-      database: 'db_seguro_vidas',
+      database: 'db_farmacia',
       autoLoadEntities: true,
       synchronize: true,
     }),
